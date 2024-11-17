@@ -21,6 +21,7 @@ client.on('interactionCreate', async (interaction) => {
     if (interaction.commandName === 'erm') {
         await interaction.reply('█░█░█ █░█ ▄▀█ ▀█▀\n▀▄▀▄▀ █▀█ █▀█ ░█░\n\n▀█▀ █░█ █▀▀\n░█░ █▀█ ██▄\n\n█▀ █ █▀▀ █▀▄▀█ ▄▀█\n▄█ █ █▄█ █░▀░█ █▀█');
     }
+    
     // delete command
     if (interaction.commandName === 'delete') {
         if (!interaction.member.permissions.has(PermissionFlagsBits.ManageMessages)) {
