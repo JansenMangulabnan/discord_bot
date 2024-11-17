@@ -53,6 +53,7 @@ const rest = new REST({version: '10'}).setToken(process.env.TOKEN);
         );
 
         console.log(`\u001B[93mReloaded (/) commands.\u001b[0m`); 
+        require('./index');
     } catch (error) {
         console.error(error);
     }
