@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { REST, Routes, ApplicationCommandOptionType, time } = require('discord.js');
+const { REST, Routes, ApplicationCommandOptionType, time} = require('discord.js');
 
 const commands = [
     {
@@ -21,9 +21,21 @@ const commands = [
         ]
     },
     {
+        name: 'clear',
+        description: 'clears specied number of messages',
+        options: [
+            {
+                name: 'msg-count',
+                description: 'the number of messages to delete',
+                type: ApplicationCommandOptionType.Integer,
+                required: true
+            }
+        ]
+    },
+    {
         name: 'erm',
         description: 'what the sigma'
-    },
+    }
 ];
 
 
@@ -31,7 +43,7 @@ const rest = new REST({version: '10'}).setToken(process.env.TOKEN);
 (async () => {
 
     try {
-        console.log('Reloading (/) commands.');
+        console.log(`\u001B[93mReloading (/) commands.\u001b[0m`); 
         await rest.put(
             Routes.applicationGuildCommands(
                 process.env.CLIENT_ID, 
@@ -40,7 +52,7 @@ const rest = new REST({version: '10'}).setToken(process.env.TOKEN);
             { body: commands }
         );
 
-        console.log('Successfully reloaded (/) commands.');
+        console.log(`\u001B[93mReloaded (/) commands.\u001b[0m`); 
     } catch (error) {
         console.error(error);
     }
