@@ -32,15 +32,13 @@ client.on('interactionCreate', async (interaction) => {
         } else {
             const user = interaction.options.getString('user');
             const msgCount = interaction.options.getInteger('msg-count');
+            const skipCount = interaction.options.getInteger('skip') || 0;
             const channel = interaction.channel;
         
             await interaction.deferReply({ ephemeral: true });
         
             const messages = await channel.messages.fetch({ limit: 100 });
-            const userMessages = messages
-                .filter(msg => msg.author.username === user)
-                .toJSON()
-                .slice(0, msgCount);
+            const userMessages = messages.filter(msg => msg.author.username === user).toJSON().slice(skipCount,skipCount + msgCount);
         
             if (userMessages.length > 0) {
                 try {
@@ -71,12 +69,13 @@ client.on('interactionCreate', async (interaction) => {
             });
         } else {
             const msgCount = interaction.options.getInteger('msg-count');
+            const skipCount = interaction.options.getInteger('skip') || 0;
             const channel = interaction.channel;
         
             await interaction.deferReply({ ephemeral: true });
         
             const messages = await channel.messages.fetch({ limit: 100 });
-            const messagesToDelete = messages.toJSON().slice(0, msgCount);
+            const messagesToDelete = messages.toJSON().slice(skipCount, skipCount + msgCount);
         
             if (messagesToDelete.length > 0) {
                 try {

@@ -4,7 +4,7 @@ const { REST, Routes, ApplicationCommandOptionType, time} = require('discord.js'
 const commands = [
     {
         name: 'delete',
-        description: 'auto delete messages from a specific user',
+        description: 'delete messages from a specific user',
         options: [
             {
                 name: 'user',
@@ -17,6 +17,12 @@ const commands = [
                 description: 'the number of messages to delete',
                 type: ApplicationCommandOptionType.Integer,
                 required: true
+            },
+            {
+                name: 'skip',
+                description: 'skip the specfied number of messages',
+                type: ApplicationCommandOptionType.Integer,
+                required: false
             }
         ]
     },
@@ -29,7 +35,14 @@ const commands = [
                 description: 'the number of messages to delete',
                 type: ApplicationCommandOptionType.Integer,
                 required: true
+            },
+            {
+                name: 'skip',
+                description: 'skip the specfied number of messages',
+                type: ApplicationCommandOptionType.Integer,
+                required: false
             }
+
         ]
     },
     {
